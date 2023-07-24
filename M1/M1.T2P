@@ -1,0 +1,24 @@
+int LED = 12;			   // intialise led pin
+const byte INTERRUPT = 3;  // intialise interrupt pin
+volatile byte STATE = LOW; // intialise state
+
+// function determining what the interuppt does
+void motionTrigger() {
+  STATE = !STATE;
+  Serial.println("Interrupt Triggered");
+  digitalWrite(LED, STATE);
+}
+
+
+void setup()
+{
+
+  pinMode(LED, OUTPUT);             // initialise led as output
+  pinMode(INTERRUPT, INPUT_PULLUP); // initialise interrupt pin
+  attachInterrupt(digitalPinToInterrupt(INTERRUPT), motionTrigger, CHANGE);
+  Serial.begin(9600);  // initialise serial 
+
+}
+
+void loop(){}
+

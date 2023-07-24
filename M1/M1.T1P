@@ -1,0 +1,30 @@
+// C++ code
+//
+
+int PIR = 2;        // Motion detector pin
+int LED = 12;       // Led pin
+int PIR_STATUS = 0; // initialise motion detector state
+
+void setup()
+{
+  pinMode(PIR, INPUT); // initialise motion detector as input
+  pinMode(LED, OUTPUT);// initialise led as output
+  Serial.begin(9600);  // initialise serial
+
+}
+
+void loop()
+{
+  PIR_STATUS = digitalRead(PIR);
+  
+  if (PIR_STATUS == HIGH) {
+  	digitalWrite(LED, HIGH);
+  	Serial.println("Motion detected");
+  }
+  
+  else {
+    digitalWrite(LED, LOW);
+    Serial.println("No motion detected");
+  }
+
+}
